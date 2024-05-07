@@ -1,0 +1,7 @@
+INSERT INTO `mydb`.`categoria` (`id_Categoria`, `Genero`) VALUES ('1', 'Comedia');
+INSERT INTO `mydb`.`categoria` (`id_Categoria`, `Genero`) VALUES ('2', 'Acción');
+INSERT INTO `mydb`.`categoria` (`id_Categoria`, `Genero`) VALUES ('3', 'Romance');
+INSERT INTO `mydb`.`categoria` (`id_Categoria`, `Genero`) VALUES ('4', 'Terror');
+INSERT INTO `mydb`.`categoria` (`id_Categoria`, `Genero`) VALUES ('5', 'Drama y Suspenso');
+INSERT INTO `mydb`.`categoria` (`id_Categoria`, `Genero`) VALUES ('6', 'Fantasia');
+INSERT INTO `mydb`.`categoria` (`id_Categoria`, `Genero`) VALUES ('7', 'Aventura');
