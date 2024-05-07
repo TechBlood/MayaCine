@@ -1,0 +1,2 @@
+-Funcion:
+UPDATE `mydb`.`funcion` SET `Formato` = '3D', `Doblaje` = 'Español,LA', `Precio` = '25', `Fecha` = '2024-07-12 00:00:00', `id_Pelicula` = '1', `id_asientos` = '1' WHERE (`id_Funcion` = '1');
