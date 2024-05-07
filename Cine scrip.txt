@@ -1,0 +1,6 @@
+INSERT INTO `mydb`.`cine` (`id_Cine`) VALUES ('1');
+INSERT INTO `mydb`.`cine` (`id_Cine`) VALUES ('2');
+INSERT INTO `mydb`.`cine` (`id_Cine`) VALUES ('3');
+INSERT INTO `mydb`.`cine` (`id_Cine`) VALUES ('4');
+INSERT INTO `mydb`.`cine` (`id_Cine`) VALUES ('5');
+INSERT INTO `mydb`.`cine` (`id_Cine`) VALUES ('6');

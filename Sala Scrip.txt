@@ -1,0 +1,6 @@
+INSERT INTO `mydb`.`sala` (`id_Sala`, `Capacidad_Asientos`, `Nombre_Sala`, `Id_Sucursal`) VALUES ('1', '20', 'A', '1');
+INSERT INTO `mydb`.`sala` (`id_Sala`, `Capacidad_Asientos`, `Nombre_Sala`, `Id_Sucursal`) VALUES ('2', '20', 'B', '1');
+INSERT INTO `mydb`.`sala` (`id_Sala`, `Capacidad_Asientos`, `Nombre_Sala`, `Id_Sucursal`) VALUES ('3', '20', 'A', '2');
+INSERT INTO `mydb`.`sala` (`id_Sala`, `Capacidad_Asientos`, `Nombre_Sala`, `Id_Sucursal`) VALUES ('4', '20', 'B', '2');
+INSERT INTO `mydb`.`sala` (`id_Sala`, `Capacidad_Asientos`, `Nombre_Sala`, `Id_Sucursal`) VALUES ('5', '20', 'A', '3');
+INSERT INTO `mydb`.`sala` (`id_Sala`, `Capacidad_Asientos`, `Nombre_Sala`, `Id_Sucursal`) VALUES ('6', '20', 'B', '3');

@@ -1,0 +1,4 @@
+INSERT INTO `mydb`.`estado_asiento` (`id_Estado`, `Tipo_Estado`) VALUES ('1', 'Disponible');
+INSERT INTO `mydb`.`estado_asiento` (`id_Estado`, `Tipo_Estado`) VALUES ('2', 'Ocupado');
+INSERT INTO `mydb`.`estado_asiento` (`id_Estado`, `Tipo_Estado`) VALUES ('3', 'Reservado');
+INSERT INTO `mydb`.`estado_asiento` (`id_Estado`, `Tipo_Estado`) VALUES ('4', 'Bloqueado');
