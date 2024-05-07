@@ -1,0 +1,255 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8mb3 ;
+USE `mydb` ;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`estado_asiento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`estado_asiento` (
+  `id_Estado` INT NOT NULL AUTO_INCREMENT,
+  `Tipo_Estado` VARCHAR(45) NULL,
+  PRIMARY KEY (`id_Estado`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`cine`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`cine` (
+  `id_Cine` INT NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id_Cine`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`sucursal`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`sucursal` (
+  `id_Sucursal` INT NOT NULL AUTO_INCREMENT,
+  `Direccion` VARCHAR(45) NULL,
+  `Correo_Electronico` VARCHAR(45) NULL,
+  `Numero_Telefonico` INT NULL,
+  `id_cine` INT NULL,
+  PRIMARY KEY (`id_Sucursal`),
+  INDEX `fk_Sucursal_Cine1_idx` (`id_cine` ASC) VISIBLE,
+  CONSTRAINT `fk_Sucursal_Cine1`
+    FOREIGN KEY (`id_cine`)
+    REFERENCES `mydb`.`cine` (`id_Cine`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`sala`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`sala` (
+  `id_Sala` INT NOT NULL AUTO_INCREMENT,
+  `Capacidad_Asientos` INT NULL,
+  `Nombre_Sala` VARCHAR(10) NULL,
+  `Id_Sucursal` INT NULL,
+  PRIMARY KEY (`id_Sala`),
+  INDEX `fk_Sala_Sucursal1_idx` (`Id_Sucursal` ASC) VISIBLE,
+  CONSTRAINT `fk_Sala_Sucursal1`
+    FOREIGN KEY (`Id_Sucursal`)
+    REFERENCES `mydb`.`sucursal` (`id_Sucursal`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`tipo_asiento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`tipo_asiento` (
+  `id_Tipo` INT NOT NULL AUTO_INCREMENT,
+  `Tipo_Asiento` VARCHAR(45) NULL,
+  PRIMARY KEY (`id_Tipo`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`asientos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`asientos` (
+  `idAsientos` INT NOT NULL AUTO_INCREMENT,
+  `Numero_Asiento` INT NULL,
+  `Fila` VARCHAR(45) NULL,
+  `id_Estado` INT NULL,
+  `id_Tipo` INT NULL,
+  `id_Sala` INT NULL,
+  PRIMARY KEY (`idAsientos`),
+  INDEX `fk_Asientos_Estado_Asiento1_idx` (`id_Estado` ASC) VISIBLE,
+  INDEX `fk_Asientos_Tipo_Asiento1_idx` (`id_Tipo` ASC) VISIBLE,
+  INDEX `fk_Asientos_Sala1_idx` (`id_Sala` ASC) VISIBLE,
+  CONSTRAINT `fk_Asientos_Estado_Asiento1`
+    FOREIGN KEY (`id_Estado`)
+    REFERENCES `mydb`.`estado_asiento` (`id_Estado`),
+  CONSTRAINT `fk_Asientos_Sala1`
+    FOREIGN KEY (`id_Sala`)
+    REFERENCES `mydb`.`sala` (`id_Sala`),
+  CONSTRAINT `fk_Asientos_Tipo_Asiento1`
+    FOREIGN KEY (`id_Tipo`)
+    REFERENCES `mydb`.`tipo_asiento` (`id_Tipo`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`categoria`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`categoria` (
+  `id_Categoria` INT NOT NULL AUTO_INCREMENT,
+  `Genero` VARCHAR(45) NULL,
+  PRIMARY KEY (`id_Categoria`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`pelicula`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`pelicula` (
+  `id_Pelicula` INT NOT NULL AUTO_INCREMENT,
+  `Titulo` VARCHAR(45) NULL,
+  `Clacificación` VARCHAR(45) NULL,
+  `Sinopsis` VARCHAR(45) NULL,
+  `Duración` VARCHAR(45) NULL,
+  `Fecha_Estreno` VARCHAR(45) NULL,
+  `Reparto` VARCHAR(45) NULL,
+  `Poster` LONGTEXT NULL,
+  `id_Categoria` INT NULL,
+  PRIMARY KEY (`id_Pelicula`),
+  INDEX `fk_Pelicula_Categoria1_idx` (`id_Categoria` ASC) VISIBLE,
+  CONSTRAINT `fk_Pelicula_Categoria1`
+    FOREIGN KEY (`id_Categoria`)
+    REFERENCES `mydb`.`categoria` (`id_Categoria`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`funcion`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`funcion` (
+  `id_Funcion` INT NOT NULL AUTO_INCREMENT,
+  `Formato` VARCHAR(45) NULL,
+  `Doblaje` VARCHAR(45) NULL,
+  `Precio` DECIMAL(65,0) NULL,
+  `Fecha` DATETIME NULL,
+  `id_Pelicula` INT NULL,
+  `id_asientos` INT NULL,
+  PRIMARY KEY (`id_Funcion`),
+  INDEX `fk_Funcion_Pelicula1_idx` (`id_Pelicula` ASC) VISIBLE,
+  INDEX `fk_Funcion_Asientos1_idx` (`id_asientos` ASC) VISIBLE,
+  CONSTRAINT `fk_Funcion_Asientos1`
+    FOREIGN KEY (`id_asientos`)
+    REFERENCES `mydb`.`asientos` (`idAsientos`),
+  CONSTRAINT `fk_Funcion_Pelicula1`
+    FOREIGN KEY (`id_Pelicula`)
+    REFERENCES `mydb`.`pelicula` (`id_Pelicula`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`puesto`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`puesto` (
+  `id_Puesto` INT NOT NULL AUTO_INCREMENT,
+  `Tipo_Puesto` VARCHAR(45) NULL,
+  PRIMARY KEY (`id_Puesto`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`rol`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`rol` (
+  `id_Rol` INT NOT NULL AUTO_INCREMENT,
+  `Tipo_Rol` VARCHAR(45) NULL,
+  PRIMARY KEY (`id_Rol`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`persona`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`persona` (
+  `id_Persona` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NULL,
+  `apellido` VARCHAR(45) NULL,
+  `telefono` VARCHAR(45) NULL,
+  `correo` VARCHAR(45) NULL,
+  `Clave` VARCHAR(12) NULL,
+  `id_Puesto` INT NULL,
+  `id_Rol` INT NULL,
+  PRIMARY KEY (`id_Persona`),
+  INDEX `fk_Empleado_Puesto1_idx` (`id_Puesto` ASC) VISIBLE,
+  INDEX `fk_Persona_Rol1_idx` (`id_Rol` ASC) VISIBLE,
+  CONSTRAINT `fk_Empleado_Puesto1`
+    FOREIGN KEY (`id_Puesto`)
+    REFERENCES `mydb`.`puesto` (`id_Puesto`),
+  CONSTRAINT `fk_Persona_Rol1`
+    FOREIGN KEY (`id_Rol`)
+    REFERENCES `mydb`.`rol` (`id_Rol`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`entradas`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`entradas` (
+  `idEntradas` INT NOT NULL AUTO_INCREMENT,
+  `Cantidad` INT NULL,
+  `id_Funcion` INT NULL,
+  `id_Persona` INT NULL,
+  PRIMARY KEY (`idEntradas`),
+  INDEX `fk_Entradas_Funcion1_idx` (`id_Funcion` ASC) VISIBLE,
+  INDEX `fk_Entradas_Persona1_idx` (`id_Persona` ASC) VISIBLE,
+  CONSTRAINT `fk_Entradas_Funcion1`
+    FOREIGN KEY (`id_Funcion`)
+    REFERENCES `mydb`.`funcion` (`id_Funcion`),
+  CONSTRAINT `fk_Entradas_Persona1`
+    FOREIGN KEY (`id_Persona`)
+    REFERENCES `mydb`.`persona` (`id_Persona`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`transacciones`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`transacciones` (
+  `id_Transacciones` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `Metodo_Pago` VARCHAR(45) NULL,
+  `id_Entradas` INT NULL,
+  PRIMARY KEY (`id_Transacciones`),
+  INDEX `fk_Transacciones_Entradas1_idx` (`id_Entradas` ASC) VISIBLE,
+  CONSTRAINT `fk_Transacciones_Entradas1`
+    FOREIGN KEY (`id_Entradas`)
+    REFERENCES `mydb`.`entradas` (`idEntradas`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
