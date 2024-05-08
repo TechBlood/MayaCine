@@ -1,0 +1,2 @@
+-Persona:
+INSERT INTO `mydb`.`persona` (`nombre`, `apellido`, `telefono`, `correo`, `Clave`,`id_Puesto`,`id_Rol`) VALUES ('Pepe', 'Red', '666', 'mail@mail1', 'pepeplus','1','1');

@@ -1,0 +1,3 @@
+
+-Puesto:
+INSERT INTO `mydb`.`puesto` (`Tipo_Puesto`) VALUES ('VIP');

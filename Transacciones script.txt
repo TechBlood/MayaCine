@@ -1,0 +1,2 @@
+-Transacciones:
+INSERT INTO `mydb`.`transacciones` (`Metodo_Pago`,`id_Entradas`) VALUES ('Efectivo','1');
