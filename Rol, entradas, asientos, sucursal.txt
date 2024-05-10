@@ -1,0 +1,16 @@
+/*Se insertan valores a la tabla Sucursal*/
+INSERT INTO mydb.sucursal (Direccion, Correo_Electronico, Numero_Telefonico) VALUES ('Av. Libertad 1234, Ciudad del Cine, CP 1001', 'cinecity1@example.com', '+1 (555) 123-4567');
+INSERT INTO mydb.sucursal (Direccion, Correo_Electronico, Numero_Telefonico) VALUES ('Calle Principal 567, Villa Cineplex, CP 2002', 'cinevilla2@exampl
+/*Se insertan valores a la tabla Rol*/
+INSERT INTO `mydb`.`rol` (`Tipo_Rol`) VALUES ('Cliente ');
+INSERT INTO `mydb`.`rol` (`Tipo_Rol`) VALUES ('Administrador');
+/*Se insertan valores a la tabla Asientos*/
+INSERT INTO `mydb`.`asientos` (`Numero_Asiento`, `Fila`) VALUES ('4', '5');
+INSERT INTO `mydb`.`asientos` (`Numero_Asiento`, `Fila`) VALUES ('8', '1');
+INSERT INTO `mydb`.`asientos` (`Numero_Asiento`, `Fila`) VALUES ('7', '6');
+INSERT INTO `mydb`.`asientos` (`Numero_Asiento`, `Fila`) VALUES ('10', '7');
+/*Se insertan valores a la tabla entradas*/
+INSERT INTO `mydb`.`entradas` (`Cantidad`) VALUES ('2');
+INSERT INTO `mydb`.`entradas` (`Cantidad`) VALUES ('1');
+INSERT INTO `mydb`.`entradas` (`Cantidad`) VALUES ('3');
+
