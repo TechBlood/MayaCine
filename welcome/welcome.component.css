@@ -1,0 +1,36 @@
+.welcome-content {
+    text-align: center;
+  }
+  
+  .movie-gallery {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+  }
+  
+  .movie-gallery img {
+    width: 200px; /* Ancho de cada imagen */
+    height: 300px; /* Alto de cada imagen */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .movie-gallery img:hover {
+    transform: scale(1.05);
+  }
+
+  /*Para acmbiar color a los textos*/
+  .titulo {
+    color: #ffffff; 
+  }
+  
+  .descripcion {
+    color: #ffffff; 
+  }
+  
+  
+
+  
+  
+  
